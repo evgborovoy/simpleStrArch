@@ -5,6 +5,7 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"simplestrarch/pkg/vlc"
 	"strings"
 
 	"github.com/spf13/cobra"
@@ -34,8 +35,8 @@ func pack(_ *cobra.Command, args []string) {
 	if err != nil {
 		handleError(err)
 	}
-	// packed := Encode(data)
-	packed := "" + string(data)
+	packed := vlc.Encode(string(data))
+
 	err = os.WriteFile(packedFileName(filePath), []byte(packed), 0644)
 	if err != nil {
 		handleError(err)
